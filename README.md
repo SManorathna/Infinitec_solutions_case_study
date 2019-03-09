@@ -14,7 +14,8 @@ The project is a springboot application which is developed upon maven. Please fo
 2. Import the project into an IDE.
 3. WeatherForecastApplication.java contains the main method. Execute this file through IDE
 4. Once the server is started, you will be able to access the REST end point using http://localhost:8080/data/{cityName} url (Application runs on the default port 8080)
-5. In order the execute the tests separately, you could use the IDE, or execute the mvn test or mvn clean install commands
+5. Please note that you might need to connect through Postman or Swagger or any other REST client to verify the endpoint
+6. In order the execute the tests separately, you could use the IDE, or execute the mvn test or mvn clean install commands
 
 ## Performed Tasks
 
