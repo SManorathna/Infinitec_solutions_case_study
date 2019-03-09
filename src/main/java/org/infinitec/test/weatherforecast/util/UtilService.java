@@ -3,6 +3,7 @@ package org.infinitec.test.weatherforecast.util;
 import org.infinitec.test.weatherforecast.constants.Constants;
 import org.springframework.stereotype.Service;
 
+import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -44,6 +45,18 @@ public class UtilService
      */
     public String getStringConvertedValue(final double value)
     {
-        return value> 0 ? String.format("%.2f", value) :"0.0";
+        final DecimalFormat dec = new DecimalFormat("#.00");
+        return dec.format(value);
+    }
+
+    /**
+     * Convert Kelvin temperature to Celsius temperature
+     *
+     * @param kelvinTemperature
+     * @return
+     */
+    public double getCelsiusConvertedTemperature(double kelvinTemperature)
+    {
+        return kelvinTemperature - Constants.KELVIN_CELSIUS_CONSTANT;
     }
 }

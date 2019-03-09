@@ -31,6 +31,8 @@ public class TemperatureCalcServiceImplTest
 
     private static final double epsilon = 1;
 
+    private static final double kelvinCelsiusConstant = 273.0;
+
     @Before
     public void setUp()
     {
@@ -74,8 +76,8 @@ public class TemperatureCalcServiceImplTest
         final double expectedDayTemp = dayCount/dayIndexes.length;
         final double expectedNightTemp = nightCount/nightIndexes.length;
 
-        Assert.assertEquals(averageDayTemp, expectedDayTemp, epsilon);
-        Assert.assertEquals(averageNightTemp, expectedNightTemp, epsilon);
+        Assert.assertEquals(averageDayTemp, getCelsiusValue(expectedDayTemp), epsilon);
+        Assert.assertEquals(averageNightTemp, getCelsiusValue(expectedNightTemp), epsilon);
     }
 
     @Test
@@ -105,8 +107,8 @@ public class TemperatureCalcServiceImplTest
         final double expectedDayTemp = dayCount/dayIndexes.length;
         final double expectedNightTemp = nightCount/nightIndexes.length;
 
-        Assert.assertEquals(averageDayTemp, expectedDayTemp, epsilon);
-        Assert.assertEquals(averageNightTemp, expectedNightTemp, epsilon);
+        Assert.assertEquals(averageDayTemp, getCelsiusValue(expectedDayTemp), epsilon);
+        Assert.assertEquals(averageNightTemp, getCelsiusValue(expectedNightTemp), epsilon);
     }
 
     @Test
@@ -132,8 +134,8 @@ public class TemperatureCalcServiceImplTest
 
         final double expectedNightTemp = nightCount/nightIndexes.length;
 
-        Assert.assertEquals(averageDayTemp, 0.0, epsilon);
-        Assert.assertEquals(averageNightTemp, expectedNightTemp, epsilon);
+        Assert.assertEquals(averageDayTemp, getCelsiusValue(0.0), epsilon);
+        Assert.assertEquals(averageNightTemp, getCelsiusValue(expectedNightTemp), epsilon);
     }
 
     private double getCount(int[] indexArray, double[] minTempValue, double[] maxTempValue)
@@ -145,5 +147,10 @@ public class TemperatureCalcServiceImplTest
         }
 
         return count;
+    }
+
+    private double getCelsiusValue(final double kelvinValue)
+    {
+        return kelvinValue - kelvinCelsiusConstant;
     }
 }

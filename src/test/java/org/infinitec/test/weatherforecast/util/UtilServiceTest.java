@@ -83,7 +83,7 @@ public class UtilServiceTest
     @Test
     public void test_getStringConvertedValue_for_given_negative_value()
     {
-        final String result = utilService.getStringConvertedValue(-15.36874);
-        Assert.assertEquals(result, "0.0");
+        final String result = utilService.getStringConvertedValue(-153.2693);
+        Assert.assertEquals(result, "-153.27");
     }
 }

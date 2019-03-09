@@ -22,4 +22,6 @@ public class Constants {
     public static final int NIGHT_TIME_STARTING_HOUR = 17;
     public static final int NIGHT_TIME_STARTING_MINUTE = 59;
 
+    public static final double KELVIN_CELSIUS_CONSTANT = 273.0;
+
 }

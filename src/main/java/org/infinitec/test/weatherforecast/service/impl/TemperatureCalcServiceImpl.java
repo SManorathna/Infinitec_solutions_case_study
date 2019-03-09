@@ -32,8 +32,11 @@ public class TemperatureCalcServiceImpl implements TemperatureCalcService
                                                Collectors.averagingDouble(e -> getAverageTempWithinDay(e.getApiWeatherForecastAttrDTO().getMaxTemp(),
                                                                                                        e.getApiWeatherForecastAttrDTO().getMinTemp()))));
 
-        return new TemperatureDetailDTO(utilService.getStringConvertedValue(temperatureRangeMap.getOrDefault(true, 0.0)),
-                                        utilService.getStringConvertedValue(temperatureRangeMap.getOrDefault(false, 0.0)));
+        final double celsiusConvertedDayTemp = utilService.getCelsiusConvertedTemperature(temperatureRangeMap.getOrDefault(true, 0.0));
+        final double celsiusConvertedNightTemp = utilService.getCelsiusConvertedTemperature(temperatureRangeMap.getOrDefault(false, 0.0));
+
+        return new TemperatureDetailDTO(utilService.getStringConvertedValue(celsiusConvertedDayTemp),
+                                        utilService.getStringConvertedValue(celsiusConvertedNightTemp));
     }
 
     private boolean isDayTimeNow(final LocalDateTime date)
