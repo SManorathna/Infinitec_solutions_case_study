@@ -12,8 +12,6 @@ import org.springframework.test.context.junit4.SpringRunner;
  * Helper service for handling commpon operations in test classes
  */
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
 public class AverageValueCalculationHelperService
 {
     public APIDailyWeatherForecastDTO getAPIWeatherForecastAttr(final String dateTime, final double minTemp, final double maxTemp, final double pressure)
