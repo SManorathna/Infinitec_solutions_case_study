@@ -13,13 +13,42 @@ The project a springboot application which is developed upon maven. Please follo
 1. Open the project directory. Go the location where the pom.xml file is placed. Build the project using terminal. (mvn clean install)
 2. Import the project into an IDE.
 3. WeatherForecastApplication.java contains the main method. Execute this file through IDE
-4. Once the server is started, you will be able to access the REST end point using http://localhost:8080/data/{cityName} (The application runs on the default port)
+4. Once the server is started, you will be able to access the REST end point using http://localhost:8080/data/{cityName} (Application runs on the default port)
 5. In order the execute the tests specifically, you could use the IDE, or execute the mvn test/ mvn clean install command
 
+## Performed Tasks
+
+Implementation is completed based on the requirement document
+Wrote tests covering all the maul services and REST controllers
+API usage documentation (Swagger is included in the project)
+Has followed the development best practices within the implementation
 
 ## Project Structure
 
 The project consist of several main packages. (config - Configuration files (Swagger), constants - Contains the project static type constant variables, controller - is for placing the rest controller classes, exceptionhandler - related to exception handling approaches, model - contains the POJO objects, service - contains the business logics of the application, util - contains utility related classes, test - contains tests related to the business logic and API controller classes, appication.properties - external API end point related details are placed)
 
-## Motivations, Challenges faced
+## Motivations and Challenges faced
+
+Basic requirement is to forecast the average temperature and pressure values for next 3 days for a given city. Basic 2 APIs were there for which can be used for this task. 5 day / 3 hour forecast and 16 day / daily forecast. Although the mentioned requirement can be easily rendered with a minimal effort if the 16 day / daily forecast API is used, it cannot be subscribed for free. Therefore I selected the 5 day/ 3 hour forecast API to retrieve data and a post processing phase implemented to render the required data for the client.
+
+5 day / 3 hour API returns altogether 40 data rows for a given city. But since the forecasting is required to be done for 3 days, there is an initial filtering performed using date ranges (3 day range). After the filtering, the resulted data stream is used for the next level filtering which is to filter average pressure values and the temperature values. Then the application delegates the filtering into basic 2 services which are implemented for filtering pressure and temperature values separately. Finally the returned results value of those services are gathered together and returned it back as the end point as a single response. 
+
+retrieving the average value of pressure is much easier than the other since temperature was required to be filtered out based on the morning and night sessions and most importantly, average value was required to be grouped based on that. Java 8 stream API was used in all the filtering.
+
+## Assumptions
+
+1. There were 2 temperature values defined in the open weather map API (minimum temperature and the maximum temperature). In order to get much more accurate value for the temperature, average of the maximum and the minimum has been considered as the actual temperature at that time.
+
+2. I have assumed that the morning time is exactly as 6:00 to 17:59 and night time is exactly as 18:00 to 5:59 during the implementation.
+
+
+
+
+
+
+
+
+
+
+
 
